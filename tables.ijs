@@ -10,9 +10,10 @@ NB. Metadata
 colNames=:(0&{)"1
 colData=:(1&{)"1
 count=:#@:>@:((< 0 1)&{)
+colIdx=:colNames@:[ i. ]
 
 NB. Query
-selCol=:(colNames@:[ i. ]) { colData@:[
+selCol=:colIdx { colData@:[
 selIdxs=:colNames@:[ ,. (({ L:0) colData)~
 valCol=:>@:selCol
 
@@ -26,7 +27,7 @@ col_arg=:(1&{)@:]
 
 NB. Transform
 transValCol=: @:(>@:(t_arg valCol col_arg))
-transCol=: 1 : '(<@:u transValCol y) (< ((colNames@:t_arg i. col_arg) y),1)} (t_arg y)'
+transCol=: 1 : '(<@:u transValCol y) (< ((t_arg colIdx col_arg) y),1)} (t_arg y)'
 
 NB. Delete
 delCol=:(colNames@:[ -. ]) ,. ([ selCol (colNames@:[ -. ]))
@@ -37,3 +38,9 @@ NB. Filter
 filterIdxs=:(I.@:)transValCol
 filter =: 1 : '(t_arg y) selIdxs (u filterIdxs y)'
 dfilter =: 1 : '(t_arg y) delIdxs (u filterIdxs y)'
+
+NB. Update
+updateIdxs=:4 : 0
+  'col idxs replacements'=:y
+  (replacements&(idxs})) transCol x;col
+)
