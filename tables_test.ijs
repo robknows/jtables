@@ -9,7 +9,7 @@ assert t teq t_exp
 
 tv=:t valCol (<'char')
 tv_exp=:'ABCDEFGHIJ'
-assert tv table_test tv_exp
+assert tv teq tv_exp
 
 tf=:(e.&2 3 5 7) filter t;'num'
 tf_exp=:2 2 $ ('num';2 3 5 7) , ('char';'CDFH')
@@ -44,6 +44,6 @@ tt=:t appendTable t
 tt_exp=:2 2 $ ('num';(i.10) , i.10) , ('char';'ABCDEFGHIJABCDEFGHIJ')
 assert tt teq tt_exp
 
-tui=:t updateIdxs 'num';(3 4 5);(10 11 12)
+tui=:t updIdxs 'num';(3 4 5);(10 11 12)
 tui_exp=:2 2 $ ('num';0 1 2 10 11 12 6 7 8 9) , ('char';'ABCDEFGHIJ')
 assert tui teq tui_exp

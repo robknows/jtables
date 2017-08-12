@@ -40,7 +40,7 @@ filter =: 1 : '(t_arg y) selIdxs (u filterIdxs y)'
 dfilter =: 1 : '(t_arg y) delIdxs (u filterIdxs y)'
 
 NB. Update
-updateIdxs=:4 : 0
+updIdxs=:4 : 0
   'col idxs replacements'=:y
   (replacements&(idxs})) transCol x;col
 )
