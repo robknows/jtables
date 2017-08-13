@@ -7,16 +7,18 @@ split=:E. }.;.1 ]
 filesize=:1!:4
 apply=:128!:2
 
-xarg=:';';('time';'open';'high';'low';'close';'zero');'SNNNNN'
-yarg=:'/home/rob/j64-805-user/projects/jtables/EURGBP_M1_2002.csv'
+farg=:'/home/rob/j64-805-user/projects/jtables/EURGBP_M1_2002.csv'
+xarg=:';';('time';'open';'high';'low';'close';'zero');'SNNNNX'
+yarg=:('/home/rob/j64-805-user/projects/jtables/EURGBP_M1_2002.csv'&;)@:(971&*)
+
 
 readCsv=: 4 : 0
   'delim columnNames types'=:x
-  csv=:y
+  'csv chksize'=:y
 
-  bytes=:iread csv;0,971
-  exploded=:(LF E. bytes) ((delim&E. }.;.1 ])@:(delim&,)@:}.);.1 bytes
-  'S N'=:]`".
+  bytes=:iread csv;0,chksize
+  exploded=:}: (LF E. bytes) ((delim&E. }.;.1 ])@:(delim&,)@:}.);.1 bytes
+  'S N X'=:]`".`0:
   typeGerund=:". }: ; (,&';')"0 types
   parseCol=:4 : '((y{typeGerund)`:6) y&{"2 x'
   ncols=:(1&{)@:$ exploded
