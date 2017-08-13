@@ -1,8 +1,3 @@
-NB. A table is a list of columns
-NB. A column is a 2 element list of boxes.
-NB.   The first box contains the column name
-NB.   The second box contains the column data (a list)
-
 NB. Creation
 tabulate=: ,. ,.
 
@@ -35,9 +30,9 @@ delIdxs=:[ selIdxs (i.@:count@:[ -. ])
 delColIdxs=:(i.@:#@:[ -. ]) { [
 
 NB. Filter
-filterIdxs=:(I.@:)transValCol
-filter =: 1 : '(t_arg y) selIdxs (u filterIdxs y)'
-dfilter =: 1 : '(t_arg y) delIdxs (u filterIdxs y)'
+where=:(I.@:)transValCol
+filter=: 1 : '(t_arg y) selIdxs (u where y)'
+dfilter=: 1 : '(t_arg y) delIdxs (u where y)'
 
 NB. Update
 updIdxs=:4 : 0
