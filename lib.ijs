@@ -20,10 +20,10 @@ readCsv=: 4 : 0
   exploded=:}: (LF E. bytes) ((delim&E. }.;.1 ])@:(delim&,)@:}.);.1 bytes
   'S N X'=:]`".`0:
   typeGerund=:". }: ; (,&';')"0 types
+  
   parseCol=:4 : '((y{typeGerund)`:6) y&{"2 x'
   ncols=:(1&{)@:$ exploded
   columns=:(exploded&parseCol) L:0 (<"0 i. ncols)
   
   columnNames ,. columns
 )
-
