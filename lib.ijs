@@ -1,29 +1,28 @@
+projects_home=:> (<1 1){UserFolders_j_
+load projects_home,'/jtables/tables.ijs'
+load projects_home,'/jtables/datetime.ijs'
+load 'tables/dsv'
+
 system=:2!:0
 type=:3!:0
 read=:1!:1
 getenv=:2!:5
 iread=:1!:11
-split=:E. }.;.1 ]
+split=:([ E. ,) (}.;.1) ,
+splitAny=:]
 filesize=:1!:4
 apply=:128!:2
+time=:6!:0
 
-farg=:'/home/rob/j64-805-user/projects/jtables/EURGBP_M1_2002.csv'
-xarg=:';';('time';'open';'high';'low';'close';'zero');'SNNNNX'
-yarg=:('/home/rob/j64-805-user/projects/jtables/EURGBP_M1_2002.csv'&;)@:(971&*)
-
-
-readCsv=: 4 : 0
+readDsv=: 4 : 0
   'delim columnNames types'=:x
-  'csv chksize'=:y
+  'csv'=:y
 
-  bytes=:iread csv;0,chksize
-  exploded=:}: (LF E. bytes) ((delim&E. }.;.1 ])@:(delim&,)@:}.);.1 bytes
+  boxes=:delim readdsv csv
   'S N X'=:]`".`0:
   typeGerund=:". }: ; (,&';')"0 types
-  
-  parseCol=:4 : '((y{typeGerund)`:6) y&{"2 x'
-  ncols=:(1&{)@:$ exploded
-  columns=:(exploded&parseCol) L:0 (<"0 i. ncols)
-  
-  columnNames ,. columns
+  parseCol=:3 : '((y&{) typeGerund)`:6 S:0 (y&{)"1 boxes'
+  ncols=:#@:(0&{) boxes
+  columns=:parseCol L:0 (<"0) i. ncols
+  (columnNames ,. columns) delColIdxs (types I.@:e. 'X')
 )
