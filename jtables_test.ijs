@@ -1,5 +1,5 @@
 projects_home=:> (<1 1){UserFolders_j_
-load projects_home,'/jtables/tables.ijs'
+load projects_home,'/jtables/lib.ijs'
 
 teq=:*./@:,@:=
 

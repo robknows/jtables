@@ -19,6 +19,7 @@ appendTable=:append colData
 NB. Helper
 t_arg=:>@:(0&{)@:]
 col_arg=:(1&{)@:]
+third_arg=:>@:(2&{)@:]
 
 NB. Transform
 transValCol=: @:(>@:(t_arg valCol col_arg))
@@ -39,3 +40,13 @@ updIdxs=:4 : 0
   'col idxs replacements'=:y
   (replacements&(idxs})) transCol x;col
 )
+updWhere=:2 : 0
+  getIndxs=:v where
+  getFiltered=:t_arg selIdxs getIndxs
+  getTransformedVals=:(u transValCol)@:(getFiltered ; third_arg)
+  t_arg updIdxs (third_arg ; getIndxs ; getTransformedVals)
+)
+
+NB. Presentation
+columnate=:((,&1)@:# $ ])`]@.((>&1)@:#@:$)
+show=:(colNames ,: (columnate L:0)@:colData)
