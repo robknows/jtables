@@ -48,7 +48,7 @@ tui=:t updIdxs 'num';(3 4 5);(10 11 12)
 tui_exp=:2 2 $ ('num';0 1 2 10 11 12 6 7 8 9) , ('char';'ABCDEFGHIJ')
 assert tui teq tui_exp
 
-tdsv=:(';';('time';'open';'high';'low';'close';'zeroes');'SNNNNX') readCsv (projects_home,'/jtables/test.csv')
+tdsv=:(';';('time';'open';'high';'low';'close';'zeroes');'SNNNNX') readDsv (projects_home,'/jtables/test.csv')
 assert 971=count tdsv
 assert 8=(type 0 { tdsv valCol <'open')
 assert 5=#tdsv
